@@ -41,18 +41,18 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBarControl = new DevExpress.XtraEditors.ProgressBarControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtCard = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.upDate = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtCard = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcTask
@@ -61,7 +61,7 @@
             this.gcTask.Location = new System.Drawing.Point(0, 36);
             this.gcTask.MainView = this.gvTask;
             this.gcTask.Name = "gcTask";
-            this.gcTask.Size = new System.Drawing.Size(571, 639);
+            this.gcTask.Size = new System.Drawing.Size(499, 639);
             this.gcTask.TabIndex = 3;
             this.gcTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTask});
@@ -199,8 +199,26 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(571, 36);
+            this.panelControl1.Size = new System.Drawing.Size(499, 36);
             this.panelControl1.TabIndex = 6;
+            // 
+            // txtCard
+            // 
+            this.txtCard.Location = new System.Drawing.Point(234, 5);
+            this.txtCard.Name = "txtCard";
+            this.txtCard.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCard.Properties.Appearance.Options.UseFont = true;
+            this.txtCard.Size = new System.Drawing.Size(115, 24);
+            this.txtCard.TabIndex = 6;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl2.Location = new System.Drawing.Point(183, 12);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(45, 14);
+            this.labelControl2.TabIndex = 5;
+            this.labelControl2.Text = "卡号：";
             // 
             // labelControl1
             // 
@@ -232,29 +250,11 @@
             this.upDate.Size = new System.Drawing.Size(119, 24);
             this.upDate.TabIndex = 0;
             // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl2.Location = new System.Drawing.Point(183, 12);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(45, 14);
-            this.labelControl2.TabIndex = 5;
-            this.labelControl2.Text = "卡号：";
-            // 
-            // txtCard
-            // 
-            this.txtCard.Location = new System.Drawing.Point(234, 5);
-            this.txtCard.Name = "txtCard";
-            this.txtCard.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCard.Properties.Appearance.Options.UseFont = true;
-            this.txtCard.Size = new System.Drawing.Size(115, 24);
-            this.txtCard.TabIndex = 6;
-            // 
             // frmConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 675);
+            this.ClientSize = new System.Drawing.Size(499, 675);
             this.Controls.Add(this.gcTask);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.progressBarControl);
@@ -272,9 +272,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
