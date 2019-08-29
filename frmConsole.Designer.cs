@@ -61,7 +61,7 @@
             this.gcTask.Location = new System.Drawing.Point(0, 36);
             this.gcTask.MainView = this.gvTask;
             this.gcTask.Name = "gcTask";
-            this.gcTask.Size = new System.Drawing.Size(499, 639);
+            this.gcTask.Size = new System.Drawing.Size(495, 639);
             this.gcTask.TabIndex = 3;
             this.gcTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTask});
@@ -199,7 +199,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(499, 36);
+            this.panelControl1.Size = new System.Drawing.Size(495, 36);
             this.panelControl1.TabIndex = 6;
             // 
             // txtCard
@@ -254,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 675);
+            this.ClientSize = new System.Drawing.Size(495, 675);
             this.Controls.Add(this.gcTask);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.progressBarControl);

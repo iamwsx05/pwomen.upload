@@ -598,7 +598,7 @@ namespace weCare
                                 on d.patientid_chr = card.patientid_chr
                              where d.status_int > 5
                                and dept.deptid_chr in ('0000370', '0000225','0000226','0000222')
-                               and d.modify_dat between
+                               and d.confirm_dat between
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') ";
 
@@ -651,7 +651,7 @@ namespace weCare
                                           left join t_bse_employee e
                                             on r1.operator_id_chr = e.empid_chr
                                          where d.status_int > 5
-                                           and d.modify_dat between
+                                           and d.confirm_dat between
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss')  
                                        and d.patientid_chr <> '-1' ";
@@ -729,7 +729,7 @@ namespace weCare
                                                 xmlUpload += "</author>" + Environment.NewLine;
                                                 xmlUpload += "<component>" + Environment.NewLine;
                                                 xmlUpload += string.Format("<OperationType value=\"{0}\"/>", motherVo.flagId == 0 ? "NEW" : "UPDATE");
-                                                xmlUpload += "{0}" + Environment.NewLine;
+                                xmlUpload += "{0}" + Environment.NewLine;
                                                 xmlUpload += "</component>" + Environment.NewLine;
                                                 xmlUpload += "</Document>" + Environment.NewLine;
 
@@ -1039,8 +1039,8 @@ namespace weCare
                 decimal upLoadCount = 0;
                 IDataParameter[] parm = null;
                 SqlHelper svc = new SqlHelper(EnumBiz.onlineDB);
-                string todayStr = "2019-01-01";
-                string todayStr2 = "2019-03-31";
+                string todayStr = "2019-07-01";
+                string todayStr2 = "2019-07-31";
 
                 Sql = @"select * from t_def_wacitemrecord a 
                                             where a.uploaddate between to_date(?, 'yyyy-mm-dd hh24:mi:ss') 
@@ -1062,7 +1062,7 @@ namespace weCare
                                and dept.deptid_chr in ('0000370', '0000225','0000226','0000222')
                                and t.apply_unit_id_chr in ('001010',  '001174', '001030', '001385', '001176', '001385')
                                --and d.patientid_chr = '9001515069'
-                               and d.modify_dat between
+                               and d.confirm_dat between
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') ";
 
@@ -1112,7 +1112,7 @@ namespace weCare
                                             on r1.operator_id_chr = e.empid_chr
                                          where d.status_int > 5    
                                            and t.apply_unit_id_chr in ('001010',  '001174', '001030', '001385', '001176', '001385')
-                                           and d.modify_dat between
+                                           and d.confirm_dat between
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss')  
                                        and d.patientid_chr <> '-1' ";
