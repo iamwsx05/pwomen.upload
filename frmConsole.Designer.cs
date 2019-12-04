@@ -45,6 +45,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.upDate = new DevExpress.XtraEditors.DateEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gcTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).BeginInit();
@@ -61,7 +62,7 @@
             this.gcTask.Location = new System.Drawing.Point(0, 36);
             this.gcTask.MainView = this.gvTask;
             this.gcTask.Name = "gcTask";
-            this.gcTask.Size = new System.Drawing.Size(495, 639);
+            this.gcTask.Size = new System.Drawing.Size(616, 639);
             this.gcTask.TabIndex = 3;
             this.gcTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTask});
@@ -191,6 +192,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.txtCard);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
@@ -199,7 +201,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(495, 36);
+            this.panelControl1.Size = new System.Drawing.Size(616, 36);
             this.panelControl1.TabIndex = 6;
             // 
             // txtCard
@@ -250,11 +252,24 @@
             this.upDate.Size = new System.Drawing.Size(119, 24);
             this.upDate.TabIndex = 0;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Crimson;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.Location = new System.Drawing.Point(490, 4);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(83, 31);
+            this.simpleButton1.TabIndex = 7;
+            this.simpleButton1.Text = "补上传";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            // 
             // frmConsole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 675);
+            this.ClientSize = new System.Drawing.Size(616, 675);
             this.Controls.Add(this.gcTask);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.progressBarControl);
@@ -296,5 +311,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtCard;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

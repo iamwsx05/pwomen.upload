@@ -517,8 +517,8 @@ namespace weCare
                         if (ele != null)
                         {
                             stdIsEnd = ele["HDSB0101036"].InnerText;
-                            if (stdIsEnd == "是")
-                                return null; 
+                           // if (stdIsEnd == "是")
+                                //return null; 
                             vo = new EntityMother();
                             vo.HISID = ele["HISID"].InnerText;
                             vo.NAME = ele["HDSB0101001"].InnerText;
@@ -1039,8 +1039,8 @@ namespace weCare
                 decimal upLoadCount = 0;
                 IDataParameter[] parm = null;
                 SqlHelper svc = new SqlHelper(EnumBiz.onlineDB);
-                string todayStr = "2019-07-01";
-                string todayStr2 = "2019-07-31";
+                string todayStr = "2019-10-01";
+                string todayStr2 = "2019-10-31";
 
                 Sql = @"select * from t_def_wacitemrecord a 
                                             where a.uploaddate between to_date(?, 'yyyy-mm-dd hh24:mi:ss') 
@@ -1060,8 +1060,8 @@ namespace weCare
                                  on d.application_id_chr = t.application_id_chr
                              where d.status_int > 5
                                and dept.deptid_chr in ('0000370', '0000225','0000226','0000222')
-                               and t.apply_unit_id_chr in ('001010',  '001174', '001030', '001385', '001176', '001385')
-                               --and d.patientid_chr = '9001515069'
+                               and t.apply_unit_id_chr in ('001382',  '001177')
+                               and d.patientid_chr = '0001695510'
                                and d.confirm_dat between
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                    to_date(?, 'yyyy-mm-dd hh24:mi:ss') ";
@@ -1111,7 +1111,7 @@ namespace weCare
                                           left join t_bse_employee e
                                             on r1.operator_id_chr = e.empid_chr
                                          where d.status_int > 5    
-                                           and t.apply_unit_id_chr in ('001010',  '001174', '001030', '001385', '001176', '001385')
+                                           and t.apply_unit_id_chr in ('001382',  '001177')
                                            and d.confirm_dat between
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
                                        to_date(?, 'yyyy-mm-dd hh24:mi:ss')  
@@ -2751,6 +2751,11 @@ namespace weCare
             {
                 this.RefreshTask(timePoint);
             }
+        }
+
+        private void simpleButton1_Click_1(object sender, EventArgs e)
+        {
+           // UploadAssistant2();
         }
     }
 
