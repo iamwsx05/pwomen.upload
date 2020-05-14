@@ -576,18 +576,27 @@ namespace weCare
                 IDataParameter[] parm = null;
                 SqlHelper svc = new SqlHelper(EnumBiz.onlineDB);
                 string todayStr = null;
+                string startDate = null;
+                string endDate = null;
 
                 if (string.IsNullOrEmpty(upDate))
-                    todayStr = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                {
+                    startDate = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
+                    endDate = DateTime.Now.ToString("yyyy-MM-dd");
+                }
                 else
-                    todayStr = upDate;
+                {
+                    startDate = upDate;
+                    endDate = upDate;
+                }
+                    
 
                 Sql = @"select * from t_def_wacitemrecord a 
                                             where a.uploaddate between to_date(?, 'yyyy-mm-dd hh24:mi:ss') 
                                             and to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
                 parm = svc.CreateParm(2);
-                parm[0].Value = todayStr + " 00:00:00";
-                parm[1].Value = todayStr + " 23:59:59";
+                parm[0].Value = startDate + " 00:00:00";
+                parm[1].Value = endDate + " 23:59:59";
                 DataTable dtUp = svc.GetDataTable(Sql, parm);
 
                 Sql = @"select distinct d.patientid_chr as patientid
@@ -610,8 +619,8 @@ namespace weCare
                 Sql += Environment.NewLine + "order by d.patientid_chr";
 
                 parm = svc.CreateParm(2);
-                parm[0].Value = todayStr + " 00:00:00";
-                parm[1].Value = todayStr + " 23:59:59";
+                parm[0].Value = startDate + " 00:00:00";
+                parm[1].Value = endDate + " 23:59:59";
                 DataTable dtPat = svc.GetDataTable(Sql, parm);
                 if (dtPat != null && dtPat.Rows.Count > 0)
                 {
@@ -659,8 +668,8 @@ namespace weCare
                                 Sql += " and d.patientid_chr = '" + hisId + "'" + Environment.NewLine;
                                 Sql += "order by d.application_id_chr";
                                 parm = svc.CreateParm(2);
-                                parm[0].Value = todayStr + " 00:00:00";
-                                parm[1].Value = todayStr + " 23:59:59";
+                                parm[0].Value = startDate + " 00:00:00";
+                                parm[1].Value = endDate + " 23:59:59";
 
                                 dtResult = svc.GetDataTable(Sql, parm);
                             }
