@@ -581,12 +581,12 @@ namespace weCare
 
                 if (string.IsNullOrEmpty(upDate))
                 {
-                    startDate = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
+                    startDate = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd");
                     endDate = DateTime.Now.ToString("yyyy-MM-dd");
                 }
                 else
                 {
-                    startDate = upDate;
+                    startDate = Function.Datetime(upDate).AddDays(-3).ToString("yyyy-MM-dd") ;
                     endDate = upDate;
                 }
                     
