@@ -546,7 +546,7 @@ namespace weCare
         /// <summary>
         /// 
         /// </summary>
-        void UploadAssistant(string upDate,string cardNo)
+        void UploadAssistant(string upDate,string upDate2 ,string cardNo)
         {
             try
             {
@@ -575,19 +575,18 @@ namespace weCare
                 decimal upLoadCount = 0;
                 IDataParameter[] parm = null;
                 SqlHelper svc = new SqlHelper(EnumBiz.onlineDB);
-                string todayStr = null;
                 string startDate = null;
                 string endDate = null;
 
                 if (string.IsNullOrEmpty(upDate))
                 {
-                    startDate = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd");
+                    startDate = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd");
                     endDate = DateTime.Now.ToString("yyyy-MM-dd");
                 }
                 else
                 {
-                    startDate = Function.Datetime(upDate).AddDays(-3).ToString("yyyy-MM-dd") ;
-                    endDate = upDate;
+                    startDate = upDate;
+                    endDate = upDate2;
                 }
                     
 
@@ -668,7 +667,7 @@ namespace weCare
                                 Sql += " and d.patientid_chr = '" + hisId + "'" + Environment.NewLine;
                                 Sql += "order by d.application_id_chr";
                                 parm = svc.CreateParm(2);
-                                parm[0].Value = startDate + " 00:00:00";
+                                parm[0].Value = Function.Datetime(endDate).AddDays(-30).ToString("yyyy-MM-dd") + " 00:00:00";
                                 parm[1].Value = endDate + " 23:59:59";
 
                                 dtResult = svc.GetDataTable(Sql, parm);
@@ -1014,469 +1013,6 @@ namespace weCare
             }
         }
         #endregion
-
-        #region 补上传
-        /// <summary>
-        /// 
-        /// </summary>
-        void UploadAssistant2()
-        {
-            try
-            {
-                List<EntityWacCheckRecord> lstWacCheck = new List<EntityWacCheckRecord>();
-                EntityWacCheckRecord wacCheckRecordVo = null;
-                DataTable dtResult = null;
-                DataTable dtWacItem = null;
-                string Sql = string.Empty;
-                string Sql1 = string.Empty;
-                string deptId = string.Empty;
-                string deptName = string.Empty;
-                string checktor = string.Empty;
-                string checkDate = string.Empty;
-                string applicationId = string.Empty;
-                string hisGroupId = string.Empty;
-                string applyunitid = string.Empty;
-                string applyunitname = string.Empty;
-                string applyunitidLast = string.Empty;
-                string itemname = string.Empty;
-                string assistantCode = string.Empty;
-                string assistantName = string.Empty;
-                string assistantStr = string.Empty;
-                string resultStr = string.Empty;
-                string recordStr = string.Empty;
-                string upStr = string.Empty;
-                decimal upLoadCount = 0;
-                IDataParameter[] parm = null;
-                SqlHelper svc = new SqlHelper(EnumBiz.onlineDB);
-                string todayStr = "2019-10-01";
-                string todayStr2 = "2019-10-31";
-
-                Sql = @"select * from t_def_wacitemrecord a 
-                                            where a.uploaddate between to_date(?, 'yyyy-mm-dd hh24:mi:ss') 
-                                            and to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
-                parm = svc.CreateParm(2);
-                parm[0].Value = todayStr + " 00:00:00";
-                parm[1].Value = todayStr2 + " 23:59:59";
-                DataTable dtUp = svc.GetDataTable(Sql, parm);
-
-                Sql = @"select distinct d.patientid_chr as patientid,d.patient_name_vchr,d.modify_dat
-                              from t_opr_lis_sample d
-                              left join t_bse_deptdesc dept
-                                on d.appl_deptid_chr = dept.deptid_chr
-                              left join t_bse_patientcard card
-                                on d.patientid_chr = card.patientid_chr
-                                left join t_opr_lis_app_apply_unit t
-                                 on d.application_id_chr = t.application_id_chr
-                             where d.status_int > 5
-                               and dept.deptid_chr in ('0000370', '0000225','0000226','0000222')
-                               and t.apply_unit_id_chr in ('001382',  '001177')
-                               and d.patientid_chr = '0001695510'
-                               and d.confirm_dat between
-                                   to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
-                                   to_date(?, 'yyyy-mm-dd hh24:mi:ss') ";
-
-
-                Sql += Environment.NewLine + "order by d.patientid_chr";
-
-                parm = svc.CreateParm(2);
-                parm[0].Value = todayStr + " 00:00:00";
-                parm[1].Value = todayStr2 + " 23:59:59";
-                DataTable dtPat = svc.GetDataTable(Sql, parm);
-                if (dtPat != null && dtPat.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in dtPat.Rows)
-                    {
-                        string hisId = dr["patientid"].ToString();
-                        EntityMother motherVo = null;
-
-                        // 查找平台记录
-                        motherVo = GetPlatMotherInfo(hisId);
-
-                        if (motherVo != null)
-                        {
-                            #region 查找检验结果
-                            if (!string.IsNullOrEmpty(hisId))
-                            {
-                                Sql = @"select d.application_id_chr    as applicationid,
-                                               t.apply_unit_id_chr     as applyunitid,
-                                               t1.apply_unit_name_vchr as applyunitname,
-                                               d.patientid_chr         as patientid,
-                                               dept.deptid_chr,
-                                               dept.deptname_vchr,
-                                               r1.check_item_id_chr    as itemid,
-                                               r1.CHECK_ITEM_NAME_VCHR as itemname,
-                                               r1.result_vchr          as result,
-                                               e.lastname_vchr        as checktor,
-                                               d.confirm_dat       as checkdate
-                                          from t_opr_lis_sample d
-                                          left join t_opr_lis_check_result r1
-                                            on d.sample_id_chr = r1.sample_id_chr
-                                          left join t_opr_lis_app_apply_unit t
-                                            on d.application_id_chr = t.application_id_chr
-                                          left join t_aid_lis_apply_unit t1
-                                            on t.apply_unit_id_chr = t1.apply_unit_id_chr
-                                          left join t_bse_deptdesc dept
-                                            on d.appl_deptid_chr = dept.deptid_chr
-                                          left join t_bse_employee e
-                                            on r1.operator_id_chr = e.empid_chr
-                                         where d.status_int > 5    
-                                           and t.apply_unit_id_chr in ('001382',  '001177')
-                                           and d.confirm_dat between
-                                       to_date(?, 'yyyy-mm-dd hh24:mi:ss') and
-                                       to_date(?, 'yyyy-mm-dd hh24:mi:ss')  
-                                       and d.patientid_chr <> '-1' ";
-
-                                Sql += " and d.patientid_chr = '" + hisId + "'" + Environment.NewLine;
-                                Sql += "order by d.application_id_chr";
-                                parm = svc.CreateParm(2);
-                                parm[0].Value = todayStr + " 00:00:00";
-                                parm[1].Value = todayStr2 + " 23:59:59";
-
-                                dtResult = svc.GetDataTable(Sql, parm);
-                            }
-                            #endregion
-
-                            if (dtResult != null && dtResult.Rows.Count > 0)
-                            {
-                                applyunitidLast = "";
-                                upLoadCount++;
-                                DataRow[] drr = dtResult.Select("patientid = '" + motherVo.HISID + "'", "applyunitid desc");
-                                upStr += motherVo.HISID + ":";
-                                if (drr != null && drr.Length > 0)
-                                {
-                                    for (int drI = 0; drI < drr.Length; drI++)
-                                    {
-                                        applyunitid = drr[drI]["applyunitid"].ToString();
-
-                                        hisGroupId = drr[drI]["applyunitid"].ToString();
-                                        deptId = drr[drI]["deptid_chr"].ToString();
-                                        deptName = drr[drI]["deptname_vchr"].ToString();
-                                        checktor = drr[drI]["checktor"].ToString();
-                                        checkDate = drr[drI]["checkDate"].ToString();
-                                        applicationId = drr[drI]["applicationid"].ToString();
-
-                                        if (applyunitid != applyunitidLast)
-                                        {
-                                            Sql = @"select a.platgroupid,
-                                                       a.platgroupname,
-                                                       a.hisgroupid,
-                                                       a.platitemid,
-                                                       a.platitemname,
-                                                       a.hisitemid
-                                                  from t_def_wacitem a 
-                                                  where a.hisgroupid  = ?  order by a.platgroupid";
-
-                                            applyunitidLast = applyunitid;
-                                            parm = svc.CreateParm(1);
-                                            parm[0].Value = hisGroupId;
-                                            dtWacItem = svc.GetDataTable(Sql, parm);
-
-                                            if (dtWacItem != null && dtWacItem.Rows.Count > 0)
-                                            {
-                                                upStr += hisGroupId + "、";
-
-                                                if (dtUp != null && dtUp.Rows.Count > 0)
-                                                {
-                                                    DataRow[] drrUp = dtUp.Select("patientid = '" + motherVo.HISID + "' and hisgroupid = '" + hisGroupId + "' and applicationId = '" + applicationId + "'");
-                                                    motherVo.flagId = ((drrUp != null && drrUp.Length > 0) ? 1 : 0);
-                                                }
-                                                else
-                                                {
-                                                    motherVo.flagId = 0;
-                                                }
-
-                                                string xmlUpload = string.Empty;
-                                                assistantStr = "";
-                                                xmlUpload += "<?xml version=\"1.0\" encoding=\"GBK\" ?>" + Environment.NewLine;
-                                                xmlUpload += "<Document type=\"Request Save\" versionNumber=\"\" value=\"1.0\">" + Environment.NewLine;
-                                                xmlUpload += "<realmCode code=\"4419.CN\"/>" + Environment.NewLine;
-                                                xmlUpload += "<code code=\"4419.A01.02.211\" codeSystem=\"4419.CN.01\" codeSystemName=\"东莞市妇幼卫生信息交互共享文档分类编码系统\"/>" + Environment.NewLine;
-                                                xmlUpload += "<title>请求推送某产妇的辅助检查信息</title>" + Environment.NewLine;
-                                                xmlUpload += "<author>" + Environment.NewLine;
-                                                xmlUpload += "<authorID code=\"763709818\" authorname=\"东莞市茶山医院\"/>" + Environment.NewLine;
-                                                xmlUpload += "<InformationsystemID code=\"A74CC68F-B009-4264-A880-FBE87DD91E56\" InformationsystemName=\"东莞市茶山医院HIS管理系统\"/>" + Environment.NewLine;
-                                                xmlUpload += string.Format("<GenerationTime type=\"TS\" value=\"{0}\"/>", DateTime.Now.ToString("yyyyMMddHHmm")) + Environment.NewLine;
-                                                xmlUpload += "</author>" + Environment.NewLine;
-                                                xmlUpload += "<component>" + Environment.NewLine;
-                                                xmlUpload += string.Format("<OperationType value=\"{0}\"/>", motherVo.flagId == 0 ? "NEW" : "UPDATE");
-                                                xmlUpload += "{0}" + Environment.NewLine;
-                                                xmlUpload += "</component>" + Environment.NewLine;
-                                                xmlUpload += "</Document>" + Environment.NewLine;
-
-                                                recordStr = string.Format("<recordNumber value=\"{0}\" type=\"INT\"/>", 1) + Environment.NewLine;
-                                                recordStr += "<record>" + Environment.NewLine;
-                                                recordStr += string.Format("<HISID>{0}</HISID>", motherVo.HISID) + Environment.NewLine;
-                                                recordStr += string.Format("<NAME>{0}</NAME>", motherVo.NAME) + Environment.NewLine;
-                                                recordStr += string.Format("<BARCODE>{0}</BARCODE>", motherVo.BARCODE) + Environment.NewLine;
-                                                recordStr += string.Format("<IDCARD>{0}</IDCARD>", motherVo.IDCARD) + Environment.NewLine;
-                                                recordStr += "{0}" + Environment.NewLine;
-                                                string assistantCodeLast = string.Empty;
-
-                                                foreach (DataRow drItem in dtWacItem.Rows)
-                                                {
-                                                    assistantCode = drItem["platgroupid"].ToString();
-                                                    assistantName = drItem["platgroupname"].ToString();
-
-                                                    if (assistantCode != assistantCodeLast)
-                                                    {
-                                                        assistantStr += string.Format("<ASSISTANT code=\"{0}\" codesystem=\"{1}\">", assistantCode, assistantName) + Environment.NewLine;
-                                                        assistantStr += string.Format("<APPID>{0}</APPID>", applicationId) + Environment.NewLine;
-                                                        assistantStr += string.Format("<ASSISTANTNAME>{0}</ASSISTANTNAME>", assistantName) + Environment.NewLine;
-                                                        assistantStr += "<CHKORG code=\"4419060001\" codesystem=\"STD_ORGAN\">东莞市茶山医院</CHKORG>" + Environment.NewLine;
-                                                        assistantStr += string.Format("<CHKDEP code=\"{0}\" codesystem=\"STD_KESHI\">{1}</CHKDEP>", "25043", "妇产科") + Environment.NewLine;
-                                                        assistantStr += string.Format("<CHKDATE>{0}</CHKDATE>", Function.Datetime(checkDate).ToString("yyyy-MM-dd")) + Environment.NewLine;
-                                                        assistantStr += string.Format("<CHKDOCTOR>{0}</CHKDOCTOR>", checktor) + Environment.NewLine;
-
-                                                        assistantCodeLast = assistantCode;
-                                                        DataRow[] drrAssist = dtWacItem.Select("platgroupid = '" + assistantCode + "'");
-                                                        #region
-                                                        if (drrAssist != null & drrAssist.Length > 0)
-                                                        {
-                                                            for (int drA = 0; drA < drrAssist.Length; drA++)
-                                                            {
-                                                                string platitemid = drrAssist[drA]["platitemid"].ToString();
-                                                                string platitemname = drrAssist[drA]["platitemname"].ToString();
-                                                                string hisitemid = drrAssist[drA]["hisitemid"].ToString();
-
-                                                                assistantCode = drrAssist[drA]["platgroupid"].ToString();
-                                                                assistantName = drrAssist[drA]["platgroupname"].ToString();
-                                                                string result = string.Empty;
-
-                                                                DataRow[] drrItem = dtResult.Select("applyunitid = '" + hisGroupId + "' and itemid = '" + hisitemid + "'");
-                                                                if (drrItem != null && drrItem.Length > 0)
-                                                                {
-                                                                    DataRow drrR = drrItem[0];
-                                                                    #region 上传记录
-                                                                    wacCheckRecordVo = new EntityWacCheckRecord();
-                                                                    wacCheckRecordVo.patientId = motherVo.HISID;
-                                                                    wacCheckRecordVo.applicationId = applicationId;
-                                                                    wacCheckRecordVo.platgroupid = assistantCode;
-                                                                    wacCheckRecordVo.platgroupname = assistantName;
-                                                                    wacCheckRecordVo.hisgroupid = hisGroupId;
-                                                                    wacCheckRecordVo.hisgroupname = drrR["applyunitname"].ToString();
-                                                                    wacCheckRecordVo.platitemid = platitemid;
-                                                                    wacCheckRecordVo.platitemname = platitemname;
-                                                                    wacCheckRecordVo.hisitemid = drrR["itemid"].ToString();
-                                                                    wacCheckRecordVo.hisitemname = drrR["itemname"].ToString();
-                                                                    wacCheckRecordVo.uploaddate = DateTime.Now;
-                                                                    result = drrR["result"].ToString().Trim();
-                                                                    if (platitemid == "26" || platitemid == "50")//ABO血型
-                                                                    {
-                                                                        result = result.Replace("型", "").Replace("型", "");
-                                                                    }
-
-                                                                    if (platitemid == "27" || platitemid == "51")//	Rh血型
-                                                                    {
-                                                                        if (result.Contains("阳"))
-                                                                            result = "+";
-                                                                        else if (result.Contains("阴"))
-                                                                            result = "-";
-                                                                    }
-
-                                                                    if (platitemid == "20" || platitemid == "21" || platitemid == "22"
-                                                                        || platitemid == "23" || platitemid == "24" || platitemid == "25"
-                                                                        || platitemid == "28" || platitemid == "136" || platitemid == "137"
-                                                                        || platitemid == "138" || platitemid == "139" || platitemid == "140"
-                                                                        || platitemid == "5183" || platitemid == "5184" || platitemid == "5244"
-                                                                        || platitemid == "5245" || platitemid == "5246" || platitemid == "5185"
-                                                                        || platitemid == "5247" || platitemid == "5186" || platitemid == "5187"
-                                                                        || platitemid == "5188" || platitemid == "5194")
-                                                                    {
-                                                                        if (result.Contains("±"))
-                                                                        {
-                                                                            result = "±";
-                                                                        }
-                                                                        else if (result.Contains("阳"))
-                                                                        {
-                                                                            result = "+";
-                                                                        }
-                                                                        else if (result.Contains("阴"))
-                                                                        {
-                                                                            result = "-";
-                                                                        }
-                                                                    }
-
-                                                                    if (platitemid == "37" || platitemid == "38" || platitemid == "39"
-                                                                        || platitemid == "40" || platitemid == "41" || platitemid == "30"
-                                                                        || platitemid == "31" || platitemid == "32" || platitemid == "42")
-                                                                    {
-                                                                        if (result.Contains("阴") || result.Contains("-"))
-                                                                        {
-                                                                            result = "阴性";
-                                                                        }
-                                                                        else if (result.Contains("阳") || result.Contains("+"))
-                                                                        {
-                                                                            result = "阳性";
-                                                                        }
-                                                                    }
-
-                                                                    if (platitemid == "150")
-                                                                    {
-                                                                        if (result.Contains("I"))
-                                                                            result = "I度";
-                                                                        else if (result.Contains("II"))
-                                                                            result = "II度";
-                                                                        else if (result.Contains("III"))
-                                                                            result = "III度";
-                                                                        else if (result.Contains("IV"))
-                                                                            result = "IV度";
-                                                                    }
-
-                                                                    wacCheckRecordVo.result = result;
-                                                                    lstWacCheck.Add(wacCheckRecordVo);
-                                                                    #endregion
-                                                                    assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", platitemid) + Environment.NewLine;
-                                                                    assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", platitemname) + Environment.NewLine;
-                                                                    assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", result) + Environment.NewLine;
-                                                                    assistantStr += "</RESULT>" + Environment.NewLine;
-                                                                }
-                                                                else
-                                                                {
-                                                                    continue;
-                                                                }
-                                                            }
-                                                        }
-
-                                                        if (assistantCode == "311")
-                                                        {
-                                                            assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", 5243) + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", "是否初诊") + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", "是") + Environment.NewLine;
-                                                            assistantStr += "</RESULT>" + Environment.NewLine;
-
-                                                            assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", 5189) + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", "是否拒检") + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", "否") + Environment.NewLine;
-                                                            assistantStr += "</RESULT>" + Environment.NewLine;
-
-                                                            assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", 5193) + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", "孕期初次接受艾滋病检测相关告知或咨询") + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", "是") + Environment.NewLine;
-                                                            assistantStr += "</RESULT>" + Environment.NewLine;
-
-                                                            assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", 5190) + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", "检测机构") + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", "东莞市茶山医院") + Environment.NewLine;
-                                                            assistantStr += "</RESULT>" + Environment.NewLine;
-
-                                                            assistantStr += string.Format("<RESULT code=\"{0}\" codesystem=\"STD_RESULT\">", 5192) + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTNAME>{0}</RESULTNAME>", "检测日期") + Environment.NewLine;
-                                                            assistantStr += string.Format("<RESULTVALUE>{0}</RESULTVALUE>", Function.Datetime(checkDate).ToString("yyyy-MM-dd")) + Environment.NewLine;
-                                                            assistantStr += "</RESULT>" + Environment.NewLine;
-                                                        }
-                                                        #endregion
-                                                        assistantStr += "</ASSISTANT>" + Environment.NewLine;
-                                                    }
-                                                }
-
-
-
-                                                string consultStr = getConsult(motherVo);
-                                                #region 咨询项目
-                                                if (!string.IsNullOrEmpty(consultStr))
-                                                    assistantStr += consultStr;
-                                                #endregion
-
-                                                recordStr += "</record>" + Environment.NewLine;
-                                                recordStr = string.Format(recordStr, assistantStr);
-
-                                                xmlUpload = string.Format(xmlUpload, recordStr);
-
-                                                Log.Output("上传信息：" + Environment.NewLine + xmlUpload);
-
-                                                WebService ws = new WebService();
-                                                string res = ws.SaveInfoStringTypeXML("A74CC68F-B009-4264-A880-FBE87DD91E56", "763709818", xmlUpload);
-                                                Log.Output("返回信息：" + Environment.NewLine + res);
-
-                                                #region 保存上传记录
-
-                                                XmlDocument doc = new XmlDocument();
-                                                doc.LoadXml(res);
-                                                string affect = doc["Document"]["component"]["OperationSuccess"].Attributes["value"].Value;
-                                                if (affect != "YES")
-                                                {
-                                                    continue;
-                                                }
-                                                insertConsult(motherVo);
-                                                List<DacParm> lstParm = new List<DacParm>();
-                                                if (lstWacCheck.Count > 0)
-                                                {
-                                                    try
-                                                    {
-                                                        Sql = @"delete from t_def_wacitemrecord where applicationid = ? and hisgroupid = ? and hisitemid = ?  and platgroupid = ?";
-                                                        Sql1 = @"insert into t_def_wacitemrecord values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                                                        foreach (EntityWacCheckRecord vo in lstWacCheck)
-                                                        {
-                                                            parm = svc.CreateParm(4);
-                                                            parm[0].Value = vo.applicationId;
-                                                            parm[1].Value = vo.hisgroupid;
-                                                            parm[2].Value = vo.hisitemid;
-                                                            parm[3].Value = vo.platgroupid;
-                                                            lstParm.Add(svc.GetDacParm(EnumExecType.ExecSql, Sql, parm));
-                                                            //svc.ExecSql(Sql, parm);
-
-                                                            parm = svc.CreateParm(12);
-                                                            parm[0].Value = vo.patientId;
-                                                            parm[1].Value = vo.applicationId;
-                                                            parm[2].Value = vo.platgroupid;
-                                                            parm[3].Value = vo.platgroupname;
-                                                            parm[4].Value = vo.hisgroupid;
-                                                            parm[5].Value = vo.hisgroupname;
-                                                            parm[6].Value = vo.platitemid;
-                                                            parm[7].Value = vo.platitemname;
-                                                            parm[8].Value = vo.hisitemid;
-                                                            parm[9].Value = vo.hisitemname;
-                                                            parm[10].Value = vo.uploaddate = DateTime.Now;
-                                                            parm[11].Value = vo.result;
-                                                            //svc.ExecSql(Sql1, parm);
-                                                            lstParm.Add(svc.GetDacParm(EnumExecType.ExecSql, Sql1, parm));
-                                                        }
-
-                                                        if (lstParm.Count > 0)
-                                                        {
-                                                            svc.Commit(lstParm);
-                                                        }
-                                                    }
-                                                    catch (Exception e)
-                                                    {
-                                                        ExceptionLog.OutPutException(e);
-                                                    }
-                                                }
-                                                #endregion
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (!string.IsNullOrEmpty(upStr))
-                    {
-                        //upStr = upStr.TrimEnd('、');
-                        //EntitySysTaskLog logVo = new EntitySysTaskLog();
-                        //logVo.typeId = "0005";
-                        //logVo.execTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        //logVo.ipAddr = Function.LocalIP();
-                        //logVo.execStatus = 1;
-                        //logVo.execDesc = "上传成功 共 " + upLoadCount + " 人 " + upStr.TrimEnd(',');
-                        //this.SaveTaskLog(logVo);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Output("异常信息：" + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
-                //this.progressBarControl.Visible = false;
-                //this.RefreshTask();
-                //this.gvTask.ViewCaption = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd") + timePoint;
-            }
-        }
-        #endregion
-
-
 
         #region 上传孕产妇分娩信息
         /// <summary>
@@ -2693,7 +2229,7 @@ namespace weCare
             try
             {
                 //UploadFMJL(this.upDate.Text);
-                UploadAssistant(this.upDate.Text,this.txtCard.Text);
+                UploadAssistant(this.upDate.Text,this.upDate2.Text,this.txtCard.Text);
             }
             catch (Exception ex)
             {
@@ -2715,7 +2251,7 @@ namespace weCare
                     if (isExecing) return;
                     isExecing = true;
                     //this.UploadFMJL("");
-                    this.UploadAssistant("","");
+                    this.UploadAssistant("","","");
                 }
                 finally
                 {
@@ -2732,7 +2268,7 @@ namespace weCare
                     if (isExecing) return;
                     isExecing = true;
                     //this.UploadFMJL("");
-                    this.UploadAssistant("", "");
+                    this.UploadAssistant("","", "");
                 }
                 finally
                 {
@@ -2745,27 +2281,8 @@ namespace weCare
 
         #endregion
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //UploadFMJL(this.upDate.Text);
-                UploadAssistant2();
-            }
-            catch (Exception ex)
-            {
-                Log.Output("异常信息：" + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
-                this.RefreshTask(timePoint);
-            }
-        }
 
-        private void simpleButton1_Click_1(object sender, EventArgs e)
-        {
-           // UploadAssistant2();
-        }
+
     }
 
     #region 实体

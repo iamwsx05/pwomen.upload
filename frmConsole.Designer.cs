@@ -41,7 +41,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBarControl = new DevExpress.XtraEditors.ProgressBarControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.upDate2 = new DevExpress.XtraEditors.DateEdit();
             this.txtCard = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -51,6 +52,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDate2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDate2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties)).BeginInit();
@@ -62,7 +65,7 @@
             this.gcTask.Location = new System.Drawing.Point(0, 36);
             this.gcTask.MainView = this.gvTask;
             this.gcTask.Name = "gcTask";
-            this.gcTask.Size = new System.Drawing.Size(496, 639);
+            this.gcTask.Size = new System.Drawing.Size(625, 639);
             this.gcTask.TabIndex = 3;
             this.gcTask.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTask});
@@ -168,7 +171,7 @@
             this.btnUpload.Appearance.Options.UseFont = true;
             this.btnUpload.Appearance.Options.UseForeColor = true;
             this.btnUpload.Image = ((System.Drawing.Image)(resources.GetObject("btnUpload.Image")));
-            this.btnUpload.Location = new System.Drawing.Point(355, 2);
+            this.btnUpload.Location = new System.Drawing.Point(485, 2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(129, 31);
             this.btnUpload.TabIndex = 4;
@@ -192,7 +195,8 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.upDate2);
             this.panelControl1.Controls.Add(this.txtCard);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
@@ -201,25 +205,43 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(496, 36);
+            this.panelControl1.Size = new System.Drawing.Size(625, 36);
             this.panelControl1.TabIndex = 6;
             // 
-            // simpleButton1
+            // labelControl3
             // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Crimson;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(490, 4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(83, 31);
-            this.simpleButton1.TabIndex = 7;
-            this.simpleButton1.Text = "补上传";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(174, 16);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(8, 14);
+            this.labelControl3.TabIndex = 9;
+            this.labelControl3.Text = "~";
+            // 
+            // upDate2
+            // 
+            this.upDate2.EditValue = null;
+            this.upDate2.Location = new System.Drawing.Point(188, 6);
+            this.upDate2.Name = "upDate2";
+            this.upDate2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upDate2.Properties.Appearance.Options.UseFont = true;
+            this.upDate2.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 10.5F);
+            this.upDate2.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.upDate2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.upDate2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.upDate2.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.upDate2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.upDate2.Properties.EditFormat.FormatString = "yyyy-MM-dd";
+            this.upDate2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.upDate2.Properties.Mask.EditMask = "yyyy-MM-dd";
+            this.upDate2.Size = new System.Drawing.Size(119, 24);
+            this.upDate2.TabIndex = 8;
             // 
             // txtCard
             // 
-            this.txtCard.Location = new System.Drawing.Point(234, 5);
+            this.txtCard.Location = new System.Drawing.Point(365, 5);
             this.txtCard.Name = "txtCard";
             this.txtCard.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCard.Properties.Appearance.Options.UseFont = true;
@@ -229,7 +251,8 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl2.Location = new System.Drawing.Point(183, 12);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(314, 12);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(45, 14);
             this.labelControl2.TabIndex = 5;
@@ -238,6 +261,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(4, 11);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(45, 14);
@@ -269,7 +293,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 675);
+            this.ClientSize = new System.Drawing.Size(625, 675);
             this.Controls.Add(this.gcTask);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.progressBarControl);
@@ -287,6 +311,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDate2.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDate2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCard.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDate.Properties)).EndInit();
@@ -311,6 +337,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtCard;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.DateEdit upDate2;
     }
 }

@@ -37,95 +37,66 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.BonusSkins.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.BonusSkins.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Data.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.Data.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.Data.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Design.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.Design.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.PivotGrid.v13.2.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.Printing.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.Printing.v13.2.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.TouchSkins.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.TouchSkins.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.Utils.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Tutorials.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.Tutorials.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraBars.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.Utils.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraEditors.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraBars.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraGrid.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraEditors.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraLayout.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraGrid.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraNavBar.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraLayout.v13.2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraNavBar.v13.2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraPrinting.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraPrinting.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraReports.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\debug\DevExpress.XtraReports.v13.2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraRichEdit.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraReports.v16.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraTreeList.v13.2.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v13.2, Version=13.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\debug\DevExpress.XtraVerticalGrid.v13.2.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\debug\DevExpress.XtraTreeList.v16.2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -151,7 +122,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="proxy1010110.cs" />
+    <Compile Include="proyPlatWa.cs" />
     <EmbeddedResource Include="frmConsole.resx">
       <DependentUpon>frmConsole.cs</DependentUpon>
     </EmbeddedResource>

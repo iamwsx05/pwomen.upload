@@ -16,12 +16,12 @@ using System.Web.Services.Protocols;
 using System.Xml.Serialization;
 
 // 
-// 此源代码由 wsdl 自动生成, Version=4.0.30319.33440。
+// 此源代码由 wsdl 自动生成, Version=4.6.1055.0。
 // 
 
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Web.Services.WebServiceBindingAttribute(Name="WebServiceSoap", Namespace="http://tempuri.org/")]
@@ -43,7 +43,7 @@ public partial class WebService : System.Web.Services.Protocols.SoapHttpClientPr
     
     /// <remarks/>
     public WebService() {
-        this.Url = "http://10.10.2.109:9000/WebService.asmx";
+        this.Url = "http://10.10.18.201:8088/GdWebservice/WebService.asmx";
     }
     
     /// <remarks/>
@@ -402,11 +402,11 @@ public partial class WebService : System.Web.Services.Protocols.SoapHttpClientPr
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void GetInfoCompletedEventHandler(object sender, GetInfoCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class GetInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -428,11 +428,11 @@ public partial class GetInfoCompletedEventArgs : System.ComponentModel.AsyncComp
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void SaveInfoCompletedEventHandler(object sender, SaveInfoCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class SaveInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -454,11 +454,11 @@ public partial class SaveInfoCompletedEventArgs : System.ComponentModel.AsyncCom
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -480,11 +480,11 @@ public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncC
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void GetInfoStringTypeXMLCompletedEventHandler(object sender, GetInfoStringTypeXMLCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class GetInfoStringTypeXMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -506,11 +506,11 @@ public partial class GetInfoStringTypeXMLCompletedEventArgs : System.ComponentMo
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void SaveInfoStringTypeXMLCompletedEventHandler(object sender, SaveInfoStringTypeXMLCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class SaveInfoStringTypeXMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -532,11 +532,11 @@ public partial class SaveInfoStringTypeXMLCompletedEventArgs : System.ComponentM
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void GetInfoForJavaCompletedEventHandler(object sender, GetInfoForJavaCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class GetInfoForJavaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -558,11 +558,11 @@ public partial class GetInfoForJavaCompletedEventArgs : System.ComponentModel.As
 }
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 public delegate void SaveInfoForJavaCompletedEventHandler(object sender, SaveInfoForJavaCompletedEventArgs e);
 
 /// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.0.30319.33440")]
+[System.CodeDom.Compiler.GeneratedCodeAttribute("wsdl", "4.6.1055.0")]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 public partial class SaveInfoForJavaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
